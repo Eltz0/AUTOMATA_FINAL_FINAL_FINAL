@@ -1,15 +1,33 @@
-# Automata Simulator
+# Automata Visualization Tool
 
-An interactive web application for visualizing and simulating different types of automata (DFA, CFG, and PDA).
+This project provides an interactive visualization tool for different types of automata:
+- Deterministic Finite Automata (DFA)
+- Pushdown Automata (PDA)
+- Context-Free Grammars (CFG)
 
 ## Features
 
-- Interactive DFA visualization and simulation
-- CFG visualization and validation
-- PDA visualization and validation
-- Support for multiple automata configurations
-- Real-time visualization updates
-- Input validation and error handling
+- Interactive visualization of DFA, PDA, and CFG
+- Zoom and pan controls for better viewing
+- Support for multiple automata definitions
+- Real-time simulation of input strings
+- Clear visualization of state transitions
+
+## Project Structure
+
+- `index.html` - Main application page
+- `script.js` - Main application logic and visualization code
+- `dfa.js` - DFA definitions
+- `pda.js` - PDA definitions
+- `cfg.js` - CFG definitions
+
+## Usage
+
+1. Open `index.html` in a web browser
+2. Select the automaton type from the dropdown
+3. Use the zoom controls to adjust the view
+4. Enter input strings to test the automaton
+5. View the simulation results
 
 ## Technologies Used
 
@@ -17,23 +35,6 @@ An interactive web application for visualizing and simulating different types of
 - CSS3
 - JavaScript
 - Viz.js for graph visualization
-
-## Live Demo
-
-Visit the live demo at: [https://[your-username].github.io/Automata](https://[your-username].github.io/Automata)
-
-## Local Development
-
-1. Clone the repository:
-```bash
-git clone https://github.com/[your-username]/Automata.git
-```
-
-2. Open `index.html` in your web browser
-
-## Deployment
-
-This project is deployed using GitHub Pages. The main branch serves as the source for the live site.
 
 ## License
 
