@@ -1,0 +1,109 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f5f7fa;
+    padding: 20px;
+    text-align: center;
+    margin: 0;
+  }
+  
+  .container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  h1 {
+    color: #2c3e50;
+    margin-bottom: 1.5em;
+  }
+  
+  h2 {
+    color: #34495e;
+    margin: 1em 0;
+    font-size: 1.2em;
+  }
+  
+  .input-group {
+    margin: 1.5em 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  input {
+    padding: 10px 15px;
+    font-size: 1em;
+    width: 300px;
+    border: 2px solid #e0e0e0;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #3498db;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 1em;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  button:hover {
+    background: #2980b9;
+  }
+  
+  button:nth-child(3) {
+    background: #2ecc71;
+  }
+  
+  button:nth-child(3):hover {
+    background: #27ae60;
+  }
+  
+  button:nth-child(4) {
+    background: #e74c3c;
+  }
+  
+  button:nth-child(4):hover {
+    background: #c0392b;
+  }
+  
+  .result {
+    font-weight: bold;
+    margin-left: 20px;
+    min-width: 200px;
+    display: inline-block;
+  }
+  
+  .automata-section {
+    margin: 2em 0;
+    padding: 1em;
+    background: #f8f9fa;
+    border-radius: 8px;
+  }
+  
+  .graph {
+    margin-top: 1em;
+    padding: 20px;
+    background: white;
+    border-radius: 4px;
+    overflow: auto;
+  }
+  
+  .graph svg {
+    max-width: 100%;
+    height: auto;
+  }
+  
