@@ -263,26 +263,48 @@ async function simulate() {
 async function renderPDAGraph(input = "", currentPDA = pda) {
   try {
     const dot = `
-      digraph {
+      digraph DFA {
         rankdir=LR;
-        node [shape=circle, style=filled, fillcolor=lightgray];
-        
-        ${currentPDA.states.map(s => {
-          const isReadState = s.includes('read');
-          const isStartOrEnd = s === currentPDA.startState || currentPDA.acceptStates.includes(s);
-          const shape = isReadState ? 'diamond' : 'circle';
-          const color = s === currentPDA.startState ? 'lightgreen' : 
-                       currentPDA.acceptStates.includes(s) ? 'lightgreen' : 'lightgray';
-          return `"${s}" [shape=${shape}, fillcolor=${color}]`;
-        }).join('\n')}
 
-        ${Object.entries(currentPDA.transitions).flatMap(([from, trans]) =>
-          Object.entries(trans).map(([sym, moves]) =>
-            moves.map(([to, stackSym]) =>
-              `"${from}" -> "${to}" [label="${sym},${stackSym}"]`
-            ).join('\n')
-          ).join('\n')
-        ).join('\n')}
+        // Start state
+        node [shape=oval];
+        accept [label="accept"];
+        start [label="start"];
+
+        // Regular states
+        node [shape=diamond];
+        read0;
+        read1;
+        read2;
+        read3;
+        read4;
+        read5;
+        read6;
+        read7;
+        read8;
+
+        // Transitions
+        start -> read0
+        read0 -> read1 [label="a"];
+        read0 -> read1 [label="b"];
+        read1 -> read2 [label="a"];
+        read1 -> read2 [label="b"];
+        read2 -> read4 [label="a"];
+        read2 -> read3 [label="b"];
+        read3 -> read5 [label="a"];
+        read3 -> read3 [label="b"];
+        read4 -> read5 [label="a"];
+        read4 -> read6 [label="b"];
+        read5 -> read8 [label="a"];
+        read5 -> read6 [label="b"];
+        read6 -> read5 [label="a"];
+        read6 -> read7 [label="b"];
+        read7 -> read8 [label="a"];
+        read7 -> read7 [label="b"];
+        read8 -> read8 [label="a"];
+        read8 -> read7 [label="b"];
+        read7 -> accept [label="ε"];
+        read8 -> accept [label="ε"];
       }
     `;
 
