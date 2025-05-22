@@ -303,31 +303,28 @@ async function renderPDAGraph(input = "", currentPDA = pda) {
 
 async function renderCFGGraph(input = "", currentCFG = cfg) {
   try {
-    // Convert the plain text CFG to DOT format
-    const lines = currentCFG.trim().split('\n');
-    const dot = `
-      digraph {
-        rankdir=TB;
-        node [shape=box, style=filled, fillcolor=lightgray];
-        
-        ${lines.map(line => {
-          const [lhs, rhs] = line.split('→').map(s => s.trim());
-          const productions = rhs.split('|').map(p => p.trim());
-          return productions.map(p => `"${lhs}" -> "${p}"`).join('\n');
-        }).join('\n')}
-      }
-    `;
-
-    if (!viz) {
-      throw new Error('Viz.js not initialized');
-    }
-
-    const svg = await viz.renderString(dot);
-    document.getElementById('cfg-graph').innerHTML = svg;
-    console.log('CFG Graph rendered successfully');
+    const selectedDFA = document.getElementById('dfaSelector').value;
+    const cfgText = selectedDFA === 'dfa_large' ? cfg_large : cfg;
+    
+    // Create a pre element to display the CFG with proper formatting
+    const pre = document.createElement('pre');
+    pre.style.fontFamily = 'monospace';
+    pre.style.whiteSpace = 'pre-wrap';
+    pre.style.wordBreak = 'break-all';
+    pre.style.padding = '10px';
+    pre.style.backgroundColor = '#f8f9fa';
+    pre.style.borderRadius = '4px';
+    pre.textContent = cfgText;
+    
+    // Clear and update the CFG graph container
+    const container = document.getElementById('cfg-graph');
+    container.innerHTML = '';
+    container.appendChild(pre);
+    
+    console.log('CFG text rendered successfully');
   } catch (error) {
-    console.error('Error rendering CFG graph:', error);
-    document.getElementById('cfg-graph').innerHTML = `Error rendering CFG graph: ${error.message}. Please check console for details.`;
+    console.error('Error rendering CFG text:', error);
+    document.getElementById('cfg-graph').innerHTML = `Error rendering CFG text: ${error.message}. Please check console for details.`;
   }
 }
   
