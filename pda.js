@@ -2,13 +2,14 @@
 const pda = {
     states: [
         "start", "read0", "read1", "read2", "read3", "read4", "read5", 
-        "read6", "read7", "read8", "accept"
+        "read6", "read7", "read8", "accept", "reject"
     ],
     inputAlphabet: ['a', 'b'],
     stackAlphabet: ['Z'],
     startState: 'start',
     startStackSymbol: 'Z',
     acceptStates: ['accept'],
+    rejectStates: ['reject'],
     transitions: {
         'start': {
             'ε': [['read0', 'Z']]
@@ -43,24 +44,12 @@ const pda = {
         },
         'read7': {
             'a': [['read8', 'Z']],
-            'b': [['read8', 'Z']]
-        },
-        'read8': {
-            'a': [['read7', 'Z']],
-            'b': [['read7', 'Z']]
-        },
-        'read7': {
-            'a': [['read8', 'Z']],
-            'b': [['read8', 'Z']]
-        },
-        'read8': {
-            'a': [['read8', 'Z']],
-            'b': [['read7', 'Z']]
-        },
-        'read7': {
+            'b': [['read7', 'Z']],
             'ε': [['accept', 'Z']]
         },
         'read8': {
+            'a': [['read8', 'Z']],
+            'b': [['read7', 'Z']],
             'ε': [['accept', 'Z']]
         }
     }
@@ -76,7 +65,7 @@ const pda_large = {
         "read50", "read51", "read52", "read53", "read54", "read55", "read56", "read57", "read58", "reject", "accept"
     ],
     inputAlphabet: ['0', '1'],
-    stackAlphabet: ['Z', 'A', 'B'],
+    stackAlphabet: ['Z'],
     startState: 'start',
     startStackSymbol: 'Z',
     acceptStates: ['accept'],
@@ -315,16 +304,12 @@ const pda_large = {
         },
         'read57': {
             '1': [['read57', 'Z']],
-            '0': [['read55', 'Z']]
-        },
-        'read58': {
-            '1': [['read56', 'Z']],
-            '0': [['read58', 'Z']]
-        },
-        'read57': {
+            '0': [['read55', 'Z']],
             'ε': [['accept', 'Z']]
         },
         'read58': {
+            '1': [['read56', 'Z']],
+            '0': [['read58', 'Z']],
             'ε': [['accept', 'Z']]
         }
     }

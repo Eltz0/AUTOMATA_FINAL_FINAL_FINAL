@@ -262,6 +262,9 @@ async function simulate() {
 
 async function renderPDAGraph(input = "", currentPDA = pda) {
   try {
+    const selectedDFA = document.getElementById('dfaSelector').value;
+    const currentPDA = selectedDFA === 'dfa_large' ? pda_large : pda;
+
     const dot = `
       digraph DFA {
         rankdir=LR;
@@ -269,42 +272,19 @@ async function renderPDAGraph(input = "", currentPDA = pda) {
         // Start state
         node [shape=oval];
         accept [label="accept"];
+        ${selectedDFA === 'dfa_large' ? 'reject [label="reject"];' : ''}
         start [label="start"];
 
         // Regular states
         node [shape=diamond];
-        read0;
-        read1;
-        read2;
-        read3;
-        read4;
-        read5;
-        read6;
-        read7;
-        read8;
+        ${currentPDA.states.filter(state => !['start', 'accept', 'reject'].includes(state)).join(';\n')};
 
         // Transitions
-        start -> read0
-        read0 -> read1 [label="a"];
-        read0 -> read1 [label="b"];
-        read1 -> read2 [label="a"];
-        read1 -> read2 [label="b"];
-        read2 -> read4 [label="a"];
-        read2 -> read3 [label="b"];
-        read3 -> read5 [label="a"];
-        read3 -> read3 [label="b"];
-        read4 -> read5 [label="a"];
-        read4 -> read6 [label="b"];
-        read5 -> read8 [label="a"];
-        read5 -> read6 [label="b"];
-        read6 -> read5 [label="a"];
-        read6 -> read7 [label="b"];
-        read7 -> read8 [label="a"];
-        read7 -> read7 [label="b"];
-        read8 -> read8 [label="a"];
-        read8 -> read7 [label="b"];
-        read7 -> accept [label="ε"];
-        read8 -> accept [label="ε"];
+        ${Object.entries(currentPDA.transitions).flatMap(([from, trans]) =>
+          Object.entries(trans).map(([sym, to]) =>
+            `"${from}" -> "${to[0][0]}" [label="${sym}"]`
+          )
+        ).join('\n')}
       }
     `;
 
